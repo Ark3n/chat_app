@@ -6,7 +6,10 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
   final TextEditingController _confirmPwController = TextEditingController();
-  RegisterPage({super.key});
+
+  final void Function()? onTap;
+
+  RegisterPage({super.key, required this.onTap});
 
   // methods
   void register() {}
@@ -71,11 +74,14 @@ class RegisterPage extends StatelessWidget {
                   style:
                       TextStyle(color: Theme.of(context).colorScheme.primary),
                 ),
-                Text(
-                  'login now',
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: onTap,
+                  child: Text(
+                    'login now',
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             )
