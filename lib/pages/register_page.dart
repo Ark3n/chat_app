@@ -2,16 +2,15 @@ import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_text_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPwController = TextEditingController();
   final void Function()? onTap;
-  LoginPage({super.key, required this.onTap});
+  RegisterPage({super.key, required this.onTap});
 
   // MARK: - Methods
-  void login() {
-    debugPrint('Login tapped');
-  }
+  void register() {}
 
   @override
   Widget build(BuildContext context) {
@@ -26,56 +25,57 @@ class LoginPage extends StatelessWidget {
               size: 80,
               color: Theme.of(context).colorScheme.primary,
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
 
-            // welcome message
+            // Welcome Message
             Text(
-              'Welcome back!',
+              'Let\'s create an account for you!',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Theme.of(context).colorScheme.primary,
-              ),
+                  color: Theme.of(context).colorScheme.primary, fontSize: 16),
             ),
             const SizedBox(height: 10),
 
-            // email text field
-            const SizedBox(height: 10),
+            // email text filed
             MyTextField(
-              hintText: 'Email',
-              obscureText: false,
-              controller: _emailController,
-            ),
+                hintText: 'Email',
+                obscureText: false,
+                controller: _emailController),
+            const SizedBox(height: 10),
 
             // password text field
-            const SizedBox(height: 10),
             MyTextField(
-              hintText: 'Password',
-              obscureText: true,
-              controller: _passwordController,
-            ),
-            const SizedBox(height: 25),
-
-            // login button
-            MyButton(title: 'Login', onTap: login),
+                hintText: 'Password',
+                obscureText: true,
+                controller: _passwordController),
             const SizedBox(height: 10),
 
-            // Not a member? register now
+            // confirm password text field
+            MyTextField(
+                hintText: 'Confirm password',
+                obscureText: true,
+                controller: _confirmPwController),
+            const SizedBox(height: 10),
+
+            // register button
+            MyButton(title: 'Register now', onTap: register),
+            const SizedBox(height: 10),
+
+            // Already have an account? Login
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Not a member? ',
+                  'Already have an account? ',
                   style:
                       TextStyle(color: Theme.of(context).colorScheme.primary),
                 ),
                 GestureDetector(
                   onTap: onTap,
                   child: Text(
-                    'Register nov',
+                    'Login',
                     style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary),
                   ),
                 ),
               ],
