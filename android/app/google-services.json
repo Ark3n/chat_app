@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "387695654258",
+    "project_id": "chatapp-a8e4e",
+    "storage_bucket": "chatapp-a8e4e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387695654258:android:3d00f0900bd675eef059eb",
+        "android_client_info": {
+          "package_name": "kz.arken.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJkjVinlt_PEOcj3ePbl9NIV_7qAMxfu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
