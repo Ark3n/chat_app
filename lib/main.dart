@@ -1,3 +1,4 @@
+import 'package:chat_app/theme/light_mode.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/login_page.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
+      theme: lightMode,
     );
   }
 }
