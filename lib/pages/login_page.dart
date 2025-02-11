@@ -1,3 +1,4 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_text_field.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,23 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key, required this.onTap});
 
   // MARK: - Methods
-  void login() {
-    debugPrint('Login tapped');
+  // login method
+  void login(BuildContext context) async {
+    // auth service
+    final authService = AuthService();
+
+    // try to login
+    try {
+      await authService.signInWithEmailAndPassword(
+          _emailController.text, _passwordController.text);
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(e.toString()),
+        ),
+      );
+    }
   }
 
   @override
@@ -57,7 +73,10 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 25),
 
             // login button
-            MyButton(title: 'Login', onTap: login),
+            MyButton(
+              title: 'Login',
+              onTap: () => login(context),
+            ),
             const SizedBox(height: 10),
 
             // Not a member? register now
@@ -72,7 +91,7 @@ class LoginPage extends StatelessWidget {
                 GestureDetector(
                   onTap: onTap,
                   child: Text(
-                    'Register nov',
+                    'Register now',
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.bold),
