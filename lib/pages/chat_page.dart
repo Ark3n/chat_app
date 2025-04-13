@@ -1,3 +1,4 @@
+import 'package:chat_app/components/chat_bubble.dart';
 import 'package:chat_app/components/my_text_field.dart';
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/services/chat/chat_service.dart';
@@ -10,7 +11,7 @@ class ChatPage extends StatelessWidget {
   ChatPage({super.key, required this.receiverEmail, required this.receiverID});
 
   // text controller
-  TextEditingController _messageController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
 
   // chat and auth services
   final ChatService _chatService = ChatService();
@@ -78,27 +79,52 @@ class ChatPage extends StatelessWidget {
     // align message to the right if sender is the current user, otherwise left.
     var alignment =
         isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+
     return Container(
       alignment: alignment,
-      child: Text(data['message']),
+      child: Column(
+        crossAxisAlignment:
+            isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          ChatBubble(
+            message: data["message"],
+            isCurrentUser: isCurrentUser,
+          )
+        ],
+      ),
     );
   }
 
   // build message input
   Widget _buildUserInput() {
-    return Row(
-      children: [
-        // text field should take up most of the space
-        Expanded(
-          child: MyTextField(
-            hintText: 'Type a message',
-            obscureText: false,
-            controller: _messageController,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50),
+      child: Row(
+        children: [
+          // text field should take up most of the space
+          Expanded(
+            child: MyTextField(
+              hintText: 'Type a message',
+              obscureText: false,
+              controller: _messageController,
+            ),
           ),
-        ),
-        // send message button
-        IconButton(onPressed: sendMessage, icon: const Icon(Icons.arrow_upward))
-      ],
+          // send message button
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.green,
+              shape: BoxShape.circle,
+            ),
+            margin: const EdgeInsets.only(right: 25),
+            child: IconButton(
+                onPressed: sendMessage,
+                icon: const Icon(
+                  Icons.arrow_upward,
+                  color: Colors.white,
+                )),
+          )
+        ],
+      ),
     );
   }
 }
